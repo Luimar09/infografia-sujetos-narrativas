@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujetos y Narrativas – Infografía</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --azul-oscuro: #0D1B3E;
+    --azul-medio: #1B3A6B;
+    --azul-claro: #2E6BA8;
+    --dorado: #C9963A;
+    --dorado-claro: #E8C06A;
+    --crema: #F5EDD6;
+    --blanco: #FAFAF5;
+    --gris-claro: #EAE4D5;
+    --rojo: #8B2635;
+  }
+
+  body {
+    background: var(--azul-oscuro);
+    font-family: 'Lato', sans-serif;
+    color: var(--blanco);
+    min-height: 100vh;
+  }
+
+  .infografia {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 50px 20px 40px;
+    border-bottom: 2px solid var(--dorado);
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 4px;
+    background: var(--dorado);
+  }
+  .header .curso-tag {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--dorado);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--crema);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .header h1 span { color: var(--dorado); }
+  .header .subtitulo {
+    font-size: 15px;
+    color: #A0B4CC;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .header .autor-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,150,58,0.3);
+    padding: 12px 24px;
+    border-radius: 2px;
+  }
+  .header .autor-info span {
+    font-size: 13px;
+    color: var(--dorado-claro);
+  }
+  .header .autor-info .sep { color: #444; }
+
+  /* FUENTE */
+  .fuente-banner {
+    background: linear-gradient(135deg, #1A2E50 0%, #0D1B3E 100%);
+    border-left: 4px solid var(--dorado);
+    padding: 20px 28px;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .fuente-banner .icono { font-size: 32px; flex-shrink: 0; }
+  .fuente-banner .texto { font-size: 13px; color: #B0C4D8; line-height: 1.6; }
+  .fuente-banner .texto strong { color: var(--crema); font-size: 14px; }
+
+  /* SECCIÓN TÍTULO */
+  .seccion-titulo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    margin-top: 48px;
+  }
+  .seccion-titulo .num {
+    width: 42px; height: 42px;
+    background: var(--dorado);
+    color: var(--azul-oscuro);
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .seccion-titulo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--crema);
+    font-weight: 700;
+  }
+  .seccion-titulo .linea {
+    flex: 1; height: 1px; background: linear-gradient(to right, var(--dorado), transparent);
+  }
+
+  /* GRID DE CONCEPTOS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* TARJETA CONCEPTO */
+  .tarjeta {
+    background: linear-gradient(145deg, #162040 0%, #0D1B3E 100%);
+    border: 1px solid rgba(201,150,58,0.2);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .tarjeta:hover { border-color: rgba(201,150,58,0.6); }
+  .tarjeta::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--dorado);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .tarjeta:hover::after { transform: scaleX(1); }
+  .tarjeta .emoji { font-size: 36px; margin-bottom: 14px; display: block; }
+  .tarjeta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--dorado);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .tarjeta p { font-size: 13px; color: #A8BCCF; line-height: 1.7; }
+  .tarjeta .cita {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: rgba(201,150,58,0.08);
+    border-left: 2px solid var(--dorado);
+    font-size: 12px;
+    color: var(--dorado-claro);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* TARJETA NARRATIVA */
+  .narrativa-card {
+    background: linear-gradient(145deg, #162040 0%, #0D1B3E 100%);
+    border: 1px solid rgba(201,150,58,0.2);
+    padding: 28px 24px;
+    position: relative;
+  }
+  .narrativa-card .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .badge-tesis { background: var(--rojo); color: white; }
+  .badge-dialogo { background: #1A5C3A; color: white; }
+  .badge-novela { background: #4A1C6B; color: white; }
+  .narrativa-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--crema);
+    margin-bottom: 6px;
+  }
+  .narrativa-card .autora {
+    font-size: 12px;
+    color: var(--dorado);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .narrativa-card p { font-size: 13px; color: #A8BCCF; line-height: 1.7; margin-bottom: 12px; }
+  .etica-tag {
+    display: inline-block;
+    background: rgba(201,150,58,0.1);
+    border: 1px solid rgba(201,150,58,0.3);
+    color: var(--dorado-claro);
+    font-size: 11px;
+    padding: 4px 10px;
+    margin: 3px 3px 3px 0;
+  }
+
+  /* ESQUEMA CENTRAL */
+  .esquema-central {
+    background: linear-gradient(135deg, #162040 0%, #0A1528 100%);
+    border: 1px solid rgba(201,150,58,0.3);
+    padding: 40px;
+    text-align: center;
+    margin: 48px 0;
+    position: relative;
+  }
+  .esquema-central h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--crema);
+    margin-bottom: 32px;
+  }
+  .nodos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  .nodo {
+    padding: 14px 22px;
+    border: 2px solid var(--dorado);
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--dorado);
+    background: rgba(201,150,58,0.05);
+    text-align: center;
+    min-width: 140px;
+  }
+  .nodo.central {
+    background: var(--dorado);
+    color: var(--azul-oscuro);
+    font-weight: 900;
+    font-size: 16px;
+    padding: 18px 30px;
+    border-color: var(--dorado);
+  }
+  .flecha { font-size: 22px; color: var(--dorado); opacity: 0.6; }
+
+  /* TABLA COMPARATIVA */
+  .tabla-comp {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  .tabla-comp th {
+    background: var(--dorado);
+    color: var(--azul-oscuro);
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .tabla-comp td {
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #A8BCCF;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.5;
+  }
+  .tabla-comp tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .tabla-comp td:first-child { color: var(--crema); font-weight: 700; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(201,150,58,0.3);
+    text-align: center;
+  }
+  .footer p { font-size: 11px; color: #5A7090; line-height: 1.8; }
+  .footer strong { color: #7A90A8; }
+
+  /* DECORACIÓN */
+  .ornamento {
+    text-align: center;
+    color: var(--dorado);
+    opacity: 0.4;
+    font-size: 18px;
+    letter-spacing: 8px;
+    margin: 40px 0;
+  }
+</style>
+</head>
+<body>
+<div class="infografia">
+
+  <!-- ENCABEZADO -->
+  <div class="header">
+    <div class="curso-tag">Universidad Nacional Abierta y a Distancia · UNAD · Curso 80004</div>
+    <h1>Sujetos y <span>Narrativas</span></h1>
+    <div class="subtitulo">Microhistoria · Metarrelatos · Alteridad · Sujeto Histórico</div>
+    <div class="autor-info">
+      <span>Luis Gustavo Martínez Herrera</span>
+      <span class="sep">|</span>
+      <span>La persona como ser trascendente</span>
+      <span class="sep">|</span>
+      <span>Tarea 1 · 2025</span>
+    </div>
+  </div>
+
+  <!-- FUENTE -->
+  <div class="fuente-banner">
+    <div class="icono">📖</div>
+    <div class="texto">
+      <strong>Fuente principal: Arfuch, L. (2010). Sujetos y narrativas. Acta Sociológica, (53), 19–41.</strong><br>
+      El artículo analiza el "retorno del sujeto" en la cultura contemporánea a través de narrativas autobiográficas y testimoniales de mujeres sobrevivientes de la dictadura argentina (1976–1983), articulando las teorías de Bajtín, Ricoeur y Lacan desde una perspectiva semiótico-cultural.
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: CONCEPTOS CLAVE -->
+  <div class="seccion-titulo">
+    <div class="num">1</div>
+    <h2>Conceptos Fundamentales</h2>
+    <div class="linea"></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="tarjeta">
+      <span class="emoji">🧭</span>
+      <h3>Sujeto Histórico</h3>
+      <p>El sujeto no preexiste al relato: se constituye en y a través de la narración. No hay un "yo" antes de la historia narrada; la identidad es siempre el resultado de la puesta en forma narrativa de la existencia. El sujeto histórico es dialógico, incompleto y temporalmente situado.</p>
+      <div class="cita">"No hay un sujeto, o una vida, que el relato vendría a representar... ambos son solo un resultado de la narración." — Arfuch (2010, p. 27)</div>
+    </div>
+    <div class="tarjeta">
+      <span class="emoji">🪞</span>
+      <h3>Alteridad</h3>
+      <p>Todo enunciado está orientado hacia un Otro: el destinatario real o imaginario que condiciona el decir. Narrar implica siempre una responsabilidad ética hacia ese otro, una respuesta que une palabra y responsabilidad moral. La subjetividad es constitutivamente intersubjetiva.</p>
+      <div class="cita">"Respuesta y responsabilidad se anudan en un plano ético... respondo por ti." — Arfuch (2010, p. 27)</div>
+    </div>
+    <div class="tarjeta">
+      <span class="emoji">🌐</span>
+      <h3>Metarrelatos (Macrohistoria)</h3>
+      <p>Grandes narrativas modernas que organizan el sentido de la historia colectiva: la revolución, el progreso, la emancipación. En la era posmoderna, estos relatos han entrado en crisis. Quedan como horizonte de memoria nostálgica, pero ya no organizan el presente de la misma manera.</p>
+      <div class="cita">"Declinación de los grandes sujetos colectivos... cuya comparación con el presente depara sin duda decepción." — Arfuch (2010, p. 21)</div>
+    </div>
+    <div class="tarjeta">
+      <span class="emoji">🔬</span>
+      <h3>Microhistoria</h3>
+      <p>Los "pequeños relatos" que afloran ante el declive de los grandes relatos: testimonios individuales, memorias traumáticas, experiencias cotidianas del cuerpo. No son menores: son la materia viva con la que la historia colectiva se hace. La microhistoria es acto de resistencia y construcción de identidad.</p>
+      <div class="cita">"Pequeños relatos que podemos escuchar aún en el silencio de la escritura... la narración como acto de resistencia." — Arfuch (2010, p. 40)</div>
+    </div>
+  </div>
+
+  <!-- ESQUEMA CENTRAL -->
+  <div class="esquema-central">
+    <h2>Relaciones entre conceptos según Arfuch (2010)</h2>
+    <div class="nodos">
+      <div class="nodo">Metarrelatos<br><small style="font-size:10px;opacity:0.7">Macrohistoria</small></div>
+      <div class="flecha">⇄</div>
+      <div class="nodo central">SUJETO<br>HISTÓRICO</div>
+      <div class="flecha">⇄</div>
+      <div class="nodo">Microhistoria<br><small style="font-size:10px;opacity:0.7">Testimonio personal</small></div>
+    </div>
+    <div style="margin-top: 20px;" class="nodos">
+      <div class="flecha" style="transform:rotate(90deg)">⇅</div>
+    </div>
+    <div class="nodos" style="margin-top: 8px;">
+      <div class="nodo">Alteridad<br><small style="font-size:10px;opacity:0.7">El Otro como destinatario ético</small></div>
+      <div class="flecha">→</div>
+      <div class="nodo">Identidad Narrativa<br><small style="font-size:10px;opacity:0.7">Ricoeur: mismidad/ipseidad</small></div>
+      <div class="flecha">→</div>
+      <div class="nodo">Memoria Colectiva<br><small style="font-size:10px;opacity:0.7">Historia y trauma</small></div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: LAS TRES NARRATIVAS -->
+  <div class="seccion-titulo">
+    <div class="num">2</div>
+    <h2>Tres formas de narrar la experiencia traumática</h2>
+    <div class="linea"></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="narrativa-card">
+      <span class="badge badge-tesis">Tesis Doctoral</span>
+      <h3>Poder y desaparición</h3>
+      <div class="autora">Pilar Calveiro (1998) — Exilio mexicano</div>
+      <p>Escrita desde el exilio, convierte la experiencia en herramienta de análisis político. El yo se desplaza a la tercera persona, creando distancia ética y teórica.</p>
+      <div class="etica-tag">Distanciamiento ético</div>
+      <div class="etica-tag">Análisis político</div>
+      <div class="etica-tag">Antiheroísmo</div>
+    </div>
+    <div class="narrativa-card">
+      <span class="badge badge-dialogo">Diálogo colectivo</span>
+      <h3>Ese infierno</h3>
+      <div class="autora">Actis, Aldini, Gardella, Lewin, Tokar (2006)</div>
+      <p>Cinco mujeres conversan 20 años después. El yo autobiográfico plural emerge en formato coloquial. El detalle y la anécdota articulan memoria y presencia.</p>
+      <div class="etica-tag">Voz colectiva</div>
+      <div class="etica-tag">Yo autobiográfico</div>
+      <div class="etica-tag">Desborde testimonial</div>
+    </div>
+    <div class="narrativa-card">
+      <span class="badge badge-novela">Novela</span>
+      <h3>El fin de la historia</h3>
+      <div class="autora">Liliana Heker — Posición externa al campo</div>
+      <p>Voz narradora pseudoautobiográfica que imagina e interpreta la experiencia de una amiga real. Genera debate ético sobre los límites de la ficción y el testimonio.</p>
+      <div class="etica-tag">Ambigüedad genérica</div>
+      <div class="etica-tag">Posición moral externa</div>
+      <div class="etica-tag">Tensión ética/ficción</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: TABLA COMPARATIVA -->
+  <div class="seccion-titulo" style="margin-top: 48px;">
+    <div class="num">3</div>
+    <h2>Comparación: Macro vs. Microhistoria</h2>
+    <div class="linea"></div>
+  </div>
+
+  <table class="tabla-comp">
+    <tr>
+      <th>Dimensión</th>
+      <th>Macrohistoria / Metarrelato</th>
+      <th>Microhistoria / Testimonio</th>
+    </tr>
+    <tr>
+      <td>Escala</td>
+      <td>Colectiva, nacional, universal</td>
+      <td>Individual, corporal, íntima</td>
+    </tr>
+    <tr>
+      <td>Sujeto</td>
+      <td>Sujeto colectivo abstracto (la nación, el pueblo)</td>
+      <td>Sujeto concreto, encarnado, con nombre</td>
+    </tr>
+    <tr>
+      <td>Tiempo</td>
+      <td>Progresivo y lineal (historia con mayúscula)</td>
+      <td>Fragmentado, diferido, traumático</td>
+    </tr>
+    <tr>
+      <td>Lenguaje</td>
+      <td>Discurso político, jurídico, académico</td>
+      <td>Testimonio, autobiografía, conversación</td>
+    </tr>
+    <tr>
+      <td>Ética</td>
+      <td>Justicia abstracta, legalidad institucional</td>
+      <td>Responsabilidad por el Otro singular</td>
+    </tr>
+    <tr>
+      <td>Función en Arfuch</td>
+      <td>Marco contextual de la dictadura argentina</td>
+      <td>Materia viva de la memoria resistente</td>
+    </tr>
+  </table>
+
+  <!-- DECORACIÓN -->
+  <div class="ornamento">· · · ✦ · · ·</div>
+
+  <!-- SECCIÓN 4: IDEA CENTRAL -->
+  <div class="seccion-titulo">
+    <div class="num">4</div>
+    <h2>La narración como acto de resistencia y de ser</h2>
+    <div class="linea"></div>
+  </div>
+
+  <div class="tarjeta" style="border-color: rgba(201,150,58,0.5);">
+    <span class="emoji">✍️</span>
+    <h3>Síntesis del pensamiento de Arfuch</h3>
+    <p>Para Arfuch, las narrativas del yo no son un capricho individualista ni un simple síntoma del declive de lo colectivo. Son, por el contrario, la respuesta más poderosa al intento del poder autoritario de borrar al sujeto. Allí donde la dictadura impuso la desaparición, el silencio y el anonimato del horror, las narrativas autobiográficas y testimoniales afirman la presencia, la singularidad y la continuidad del sujeto histórico.</p>
+    <p style="margin-top: 12px;">La tensión entre los grandes relatos (metarrelatos de la modernidad) y los pequeños relatos (microhistorias de mujeres, hijos, sobrevivientes) no se resuelve en favor de uno u otro polo: se sostiene como un <strong style="color: var(--dorado-claro);">intervalo creativo</strong> desde el cual el sujeto se narra, se reconoce y se proyecta hacia una comunidad de escucha que asume su responsabilidad ética.</p>
+    <div class="cita">"La narración como acto de resistencia... la palabra que insiste frente al vacío, a la ausencia, al olvido." — Arfuch (2010, p. 40)</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>
+      <strong>Luis Gustavo Martínez Herrera</strong> · Curso 80004: La persona como ser trascendente<br>
+      Universidad Nacional Abierta y a Distancia – UNAD · Escuela de Ciencias Sociales, Artes y Humanidades (ECSAH) · 2025<br><br>
+      <strong>Fuente:</strong> Arfuch, L. (2010). Sujetos y narrativas. <em>Acta Sociológica, (53)</em>, 19–41. ·
+      Imágenes: iconos Unicode de dominio público (sin copyright) · Diseño propio del autor.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
